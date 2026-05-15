@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import AIAdoption from './components/AIAdoption'
 import AgentCount from './components/AgentCount'
@@ -39,6 +39,12 @@ const fadeUp = {
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('adoption')
+  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark')
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    localStorage.setItem('theme', theme)
+  }, [theme])
 
   return (
     <div className="dashboard">
@@ -51,6 +57,12 @@ export default function App() {
           </div>
         </div>
         <div className="header-meta">
+          <button
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            style={{ background: 'var(--surface-2)', border: '1px solid var(--border)', borderRadius: 8, padding: '6px 12px', fontSize: 13, cursor: 'pointer', color: 'var(--ink)' }}
+          >
+            {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
+          </button>
           <div className="header-date">Q2 2026 | May 15, 2026</div>
         </div>
       </header>
