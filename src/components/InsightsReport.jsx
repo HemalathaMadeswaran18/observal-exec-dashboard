@@ -90,8 +90,40 @@ export default function InsightsReport() {
         </p>
       </div>
 
-      {/* IDE Comparison */}
+      {/* Quick Wins */}
       <motion.div className="card" style={{ padding: '24px 28px' }} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }}>
+        <div style={{ marginBottom: 16 }}>
+          <span style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.5, color: '#34d399' }}>Quick Wins</span>
+          <h3 style={{ margin: '8px 0 4px', fontSize: 16, fontWeight: 600 }}>Immediate savings with minimal effort</h3>
+          <p style={{ color: 'var(--ink-muted)', fontSize: 13, margin: 0 }}>Combined potential: $8,100/month saved</p>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          {insights.quickWins.map((win, i) => (
+            <div key={i} style={{ padding: '16px 20px', borderRadius: 10, border: '1px solid var(--border)', background: 'rgba(255,255,255,0.01)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+                <h4 style={{ margin: 0, fontSize: 14, fontWeight: 600 }}>{win.title}</h4>
+                <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: effortBadge[win.effort].bg, color: effortBadge[win.effort].color, fontWeight: 600 }}>
+                  {effortBadge[win.effort].label} · {win.savings}
+                </span>
+              </div>
+              <p style={{ color: 'var(--ink-muted)', fontSize: 13, lineHeight: 1.5, margin: 0 }}>{win.detail}</p>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Department Gap */}
+      <motion.div className="card" style={{ padding: '24px 28px' }} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+          <span style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.5, color: '#fb7185' }}>Adoption Gap</span>
+          <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: 'rgba(52,211,153,0.1)', color: '#34d399', fontWeight: 600 }}>High Impact</span>
+        </div>
+        <h3 style={{ margin: '0 0 8px', fontSize: 16, fontWeight: 600 }}>{insights.departmentGap.title}</h3>
+        <p style={{ color: 'var(--ink-muted)', fontSize: 14, lineHeight: 1.6, margin: 0 }}>{insights.departmentGap.detail}</p>
+      </motion.div>
+
+      {/* IDE Comparison */}
+      <motion.div className="card" style={{ padding: '24px 28px' }} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
           <span style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.5, color: '#7c5cfc' }}>IDE Performance</span>
           <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: 'rgba(52,211,153,0.1)', color: '#34d399', fontWeight: 600 }}>High Impact</span>
@@ -100,8 +132,28 @@ export default function InsightsReport() {
         <p style={{ color: 'var(--ink-muted)', fontSize: 14, lineHeight: 1.6, margin: 0 }}>{insights.ideComparison.detail}</p>
       </motion.div>
 
+      {/* Ambitious Workflow */}
+      <motion.div className="card" style={{ padding: '24px 28px' }} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+          <span style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.5, color: '#fbbf24' }}>Ambitious Workflow</span>
+        </div>
+        <h3 style={{ margin: '0 0 8px', fontSize: 16, fontWeight: 600 }}>{insights.ambitiousWorkflow.title}</h3>
+        <p style={{ color: 'var(--ink-muted)', fontSize: 14, lineHeight: 1.6, margin: '0 0 16px' }}>{insights.ambitiousWorkflow.detail}</p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {insights.ambitiousWorkflow.breakdown.map((item) => (
+            <div key={item.category} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <span style={{ fontSize: 13, color: 'var(--ink-muted)', width: 160, flexShrink: 0 }}>{item.category}</span>
+              <div style={{ flex: 1, height: 6, borderRadius: 3, background: 'rgba(139,138,163,0.1)', overflow: 'hidden' }}>
+                <div style={{ height: '100%', borderRadius: 3, width: `${item.pctAutomatable}%`, background: 'linear-gradient(90deg, #7c5cfc, #22d3ee)' }} />
+              </div>
+              <span style={{ fontSize: 12, color: 'var(--ink-faint)', width: 80, textAlign: 'right' }}>{item.tickets} tickets · {item.pctAutomatable}%</span>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
       {/* Model Provider */}
-      <motion.div className="card" style={{ padding: '24px 28px' }} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}>
+      <motion.div className="card" style={{ padding: '24px 28px' }} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
           <span style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.5, color: '#22d3ee' }}>Model Provider</span>
           <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: 'rgba(52,211,153,0.1)', color: '#34d399', fontWeight: 600 }}>High Impact</span>
@@ -123,7 +175,7 @@ export default function InsightsReport() {
       </motion.div>
 
       {/* Self-Learning Toggle */}
-      <motion.div className="card" style={{ padding: '24px 28px' }} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.09 }}>
+      <motion.div className="card" style={{ padding: '24px 28px' }} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.18 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
           <span style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.5, color: '#fbbf24' }}>Configuration</span>
           <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: 'rgba(251,191,36,0.1)', color: '#fbbf24', fontWeight: 600 }}>Medium Impact</span>
@@ -132,60 +184,8 @@ export default function InsightsReport() {
         <p style={{ color: 'var(--ink-muted)', fontSize: 14, lineHeight: 1.6, margin: 0 }}>{insights.selfLearning.detail}</p>
       </motion.div>
 
-      {/* Department Gap */}
-      <motion.div className="card" style={{ padding: '24px 28px' }} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-          <span style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.5, color: '#fb7185' }}>Adoption Gap</span>
-          <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: 'rgba(52,211,153,0.1)', color: '#34d399', fontWeight: 600 }}>High Impact</span>
-        </div>
-        <h3 style={{ margin: '0 0 8px', fontSize: 16, fontWeight: 600 }}>{insights.departmentGap.title}</h3>
-        <p style={{ color: 'var(--ink-muted)', fontSize: 14, lineHeight: 1.6, margin: 0 }}>{insights.departmentGap.detail}</p>
-      </motion.div>
-
-      {/* Quick Wins */}
-      <motion.div className="card" style={{ padding: '24px 28px' }} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
-        <div style={{ marginBottom: 16 }}>
-          <span style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.5, color: '#34d399' }}>Quick Wins</span>
-          <h3 style={{ margin: '8px 0 4px', fontSize: 16, fontWeight: 600 }}>Immediate savings with minimal effort</h3>
-          <p style={{ color: 'var(--ink-muted)', fontSize: 13, margin: 0 }}>Combined potential: $8,100/month saved</p>
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          {insights.quickWins.map((win, i) => (
-            <div key={i} style={{ padding: '16px 20px', borderRadius: 10, border: '1px solid var(--border)', background: 'rgba(255,255,255,0.01)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
-                <h4 style={{ margin: 0, fontSize: 14, fontWeight: 600 }}>{win.title}</h4>
-                <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: effortBadge[win.effort].bg, color: effortBadge[win.effort].color, fontWeight: 600 }}>
-                  {effortBadge[win.effort].label} · {win.savings}
-                </span>
-              </div>
-              <p style={{ color: 'var(--ink-muted)', fontSize: 13, lineHeight: 1.5, margin: 0 }}>{win.detail}</p>
-            </div>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Ambitious Workflow */}
-      <motion.div className="card" style={{ padding: '24px 28px' }} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-          <span style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.5, color: '#fbbf24' }}>Ambitious Workflow</span>
-        </div>
-        <h3 style={{ margin: '0 0 8px', fontSize: 16, fontWeight: 600 }}>{insights.ambitiousWorkflow.title}</h3>
-        <p style={{ color: 'var(--ink-muted)', fontSize: 14, lineHeight: 1.6, margin: '0 0 16px' }}>{insights.ambitiousWorkflow.detail}</p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-          {insights.ambitiousWorkflow.breakdown.map((item) => (
-            <div key={item.category} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <span style={{ fontSize: 13, color: 'var(--ink-muted)', width: 160, flexShrink: 0 }}>{item.category}</span>
-              <div style={{ flex: 1, height: 6, borderRadius: 3, background: 'rgba(139,138,163,0.1)', overflow: 'hidden' }}>
-                <div style={{ height: '100%', borderRadius: 3, width: `${item.pctAutomatable}%`, background: 'linear-gradient(90deg, #7c5cfc, #22d3ee)' }} />
-              </div>
-              <span style={{ fontSize: 12, color: 'var(--ink-faint)', width: 80, textAlign: 'right' }}>{item.tickets} tickets · {item.pctAutomatable}%</span>
-            </div>
-          ))}
-        </div>
-      </motion.div>
-
       {/* Usage Pattern */}
-      <motion.div className="card" style={{ padding: '24px 28px' }} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}>
+      <motion.div className="card" style={{ padding: '24px 28px' }} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
           <span style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.5, color: '#5b8af5' }}>Usage Pattern</span>
         </div>
