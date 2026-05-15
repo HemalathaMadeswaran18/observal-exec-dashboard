@@ -59,7 +59,7 @@ export default function App() {
         <div className="header-meta">
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            style={{ background: 'var(--surface-2)', border: '1px solid var(--border)', borderRadius: 8, padding: '6px 12px', fontSize: 13, cursor: 'pointer', color: 'var(--ink)' }}
+            style={{ background: 'var(--bg-card)', border: '1px solid var(--border-strong)', borderRadius: 8, padding: '6px 14px', fontSize: 13, cursor: 'pointer', color: 'var(--ink)', fontWeight: 500 }}
           >
             {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
           </button>
